@@ -1,0 +1,29 @@
+<apex:page controller="currencyConverter">
+    <apex:form>
+        <apex:outputText value="Currency Converter" style="font-weight: bold; font-size: 20px;"/><br/><br/>
+        <apex:outputLabel value="From: "/>
+        <apex:selectList value="{!currency1}">
+            <apex:selectOption itemLabel="Rupee" itemValue="Rupee"/>
+            <apex:selectOption itemLabel="Dollar" itemValue="Dollar"/>
+            <apex:selectOption itemLabel="Pound" itemValue="Pound"/>
+        </apex:selectList><br/><br/>
+        
+        <apex:outputLabel value="To: "/>
+        <apex:selectList value="{!currency2}">
+            <apex:selectOption itemLabel="Rupee" itemValue="Rupee"/>
+            <apex:selectOption itemLabel="Dollar" itemValue="Dollar"/>
+            <apex:selectOption itemLabel="Pound" itemValue="Pound"/>
+        </apex:selectList><br/><br/>
+        
+        <apex:outputLabel value="Value: "/>
+        <apex:inputText value="{!value1}"/><br/><br/>
+        
+        <apex:commandButton value="Convert" action="{!convert}" rerender="result"/>
+        
+        <br/><br/>
+        
+        <apex:outputPanel id="result">
+            <apex:outputText value="Converted Value: {!value2}"/>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

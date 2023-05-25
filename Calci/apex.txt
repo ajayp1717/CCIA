@@ -1,0 +1,104 @@
+public class Calculator {
+    public double n1 {get; set;}
+    public double n2 {get; set;}
+    public double res {get; set;}
+        
+    public string v1 {get; set;}
+    public string v2 {get; set;}
+    public string vres {get; set;}
+    
+    public void add() {
+        try {
+            n1 = double.valueOf(v1);
+            n2 = double.valueOf(v2);
+            res = n1 + n2;
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void subtract() {
+        try {
+            n1 = double.valueOf(v1);
+            n2 = double.valueOf(v2);
+            res = n1 - n2;
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void multiply() {
+        try {
+            n1 = double.valueOf(v1);
+            n2 = double.valueOf(v2);
+            res = n1 * n2;
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void divide() {
+        try {
+            n1 = double.valueOf(v1);
+            n2 = double.valueOf(v2);
+            if (n2 == 0) {
+                vres = 'Cannot Divide By Zero!';
+                return;
+            }
+            res = n1 / n2;
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void x_to_y() {
+        try {
+            n1 = double.valueOf(v1);
+            n2 = double.valueOf(v2);
+            res = Math.pow(n1, n2);
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }   
+    }
+    
+    public void clear() {
+        v1 = '';
+        v2 = '';
+        vres = '0.0';
+    }
+    
+    public void sin() {
+        try {
+            n1 = double.valueOf(v1);
+            res = Math.sin(n1);
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void cos() {
+        try {
+            n1 = double.valueOf(v1);
+            res = Math.cos(n1);
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+    
+    public void tan() {
+        try {
+            n1 = double.valueOf(v1);
+            res = Math.tan(n1);
+            vres = string.valueOf(res);
+        } catch (Exception e) {
+            vres = 'Enter Valid Input!';
+        }
+    }
+}

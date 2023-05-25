@@ -1,0 +1,26 @@
+<apex:page controller="Calculator">
+    <apex:form>
+        <apex:outputText value="Calculator" style="font-weight: bold; font-size: 20px;"/><br/><br/>
+        <apex:outputLabel value="Number 1: "/>
+        <apex:inputText value="{!v1}"/><br/><br/>
+        
+        <apex:outputLabel value="Number 2: "/>
+        <apex:inputText value="{!v2}"/><br/><br/>
+        
+        <apex:commandButton value="+" action="{!add}" rerender="result"/>
+        <apex:commandButton value="-" action="{!subtract}" rerender="result"/>
+        <apex:commandButton value="*" action="{!multiply}" rerender="result"/>
+        <apex:commandButton value="/" action="{!divide}" rerender="result"/>
+        <apex:commandButton value="^" action="{!x_to_y}" rerender="result"/>
+        <apex:commandButton value="sin" action="{!sin}" rerender="result"/>
+        <apex:commandButton value="cos" action="{!cos}" rerender="result"/>
+        <apex:commandButton value="tan" action="{!tan}" rerender="result"/>
+        <apex:commandButton value="Clear" action="{!clear}" rerender="result"/>
+        
+        <br/><br/>
+        
+        <apex:outputPanel id="result">
+            <apex:outputText value="Result: {!vres}"/>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>
