@@ -3,52 +3,66 @@
 #include <string>
 using namespace std;
 
-class NQueues
+class NQueens
 {
     int n;
 
 public:
-    NQueues(int n)
+    NQueens(int n)
     {
         this->n = n;
     }
     bool isSafe(int r, int c, vector<string> board);
+    bool isSafeColumn(int c, vector<string> board);
+    bool isSafeDiagonal(int r, int c, vector<string> board);
+    bool isSafeRow(int r, vector<string> board);
     void solve(int c, vector<string> &board, vector<vector<string>> &ans);
-    vector<vector<string>> solveQueue();
+    vector<vector<string>> solveQueens();
     void display(vector<vector<string>> v);
 };
 
-bool NQueues::isSafe(int r, int c, vector<string> board)
+bool NQueens::isSafeColumn(int c, vector<string> board)
 {
-    int tmpr = r, tmpc = c;
-    while (r >= 0 && c >= 0)
+    for (int r = 0; r < n; r++)
     {
         if (board[r][c] == 'Q')
             return false;
-        r--;
-        c--;
-    }
-    c = tmpc;
-    r = tmpr;
-    while (c >= 0)
-    {
-        if (board[r][c] == 'Q')
-            return false;
-        c--;
-    }
-    c = tmpc;
-    r = tmpr;
-    while (r < n && c >= 0)
-    {
-        if (board[r][c] == 'Q')
-            return false;
-        r++;
-        c--;
     }
     return true;
 }
 
-void NQueues::solve(int c, vector<string> &board, vector<vector<string>> &ans)
+bool NQueens::isSafeDiagonal(int r, int c, vector<string> board)
+{
+    int i, j;
+    for (i = r, j = c; i >= 0 && j >= 0; i--, j--)
+    {
+        if (board[i][j] == 'Q')
+            return false;
+    }
+    for (i = r, j = c; i < n && j >= 0; i++, j--)
+    {
+        if (board[i][j] == 'Q')
+            return false;
+    }
+    return true;
+}
+
+bool NQueens::isSafeRow(int r, vector<string> board)
+{
+    for (int c = 0; c < n; c++)
+    {
+        if (board[r][c] == 'Q')
+            return false;
+    }
+    return true;
+}
+
+bool NQueens::isSafe(int r, int c, vector<string> board)
+{
+    return isSafeColumn(c, board) && isSafeDiagonal(r, c, board) && isSafeRow(r, board);
+}
+
+void NQueens::solve(int c, vector<string> &board, vector<vector<string>> &ans)
 {
     if (c == n)
     {
@@ -67,29 +81,23 @@ void NQueues::solve(int c, vector<string> &board, vector<vector<string>> &ans)
     }
 }
 
-vector<vector<string>> NQueues::solveQueue()
+vector<vector<string>> NQueens::solveQueens()
 {
     vector<vector<string>> ans;
-    vector<string> board(n);
-    string s(n, '-');
-    for (int i = 0; i < n; i++)
-    {
-        board[i] = s;
-    }
+    vector<string> board(n, string(n, '-'));
     solve(0, board, ans);
     return ans;
 }
 
-void NQueues::display(vector<vector<string>> v)
+void NQueens::display(vector<vector<string>> v)
 {
     cout << "--------------------------------" << endl;
     for (int i = 0; i < v.size(); i++)
     {
-        cout << "Aragement " << i + 1 << endl;
+        cout << "Arrangement " << i + 1 << endl;
         for (int j = 0; j < v[0].size(); j++)
         {
-            cout << v[i][j];
-            cout << endl;
+            cout << v[i][j] << endl;
         }
         cout << endl;
     }
@@ -99,10 +107,10 @@ void NQueues::display(vector<vector<string>> v)
 int main()
 {
     int n;
-    cout << "Enter the number of queens: " << endl;
+    cout << "Enter the number of queens: ";
     cin >> n;
-    NQueues q(n);
-    vector<vector<string>> v = q.solveQueue();
+    NQueens q(n);
+    vector<vector<string>> v = q.solveQueens();
     q.display(v);
     return 0;
 }
