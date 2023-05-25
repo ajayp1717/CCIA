@@ -99,7 +99,7 @@ void NQueues::display(vector<vector<string>> v)
 int main()
 {
     int n;
-    cout << "Enter the number of queues" << endl;
+    cout << "Enter the number of queens: " << endl;
     cin >> n;
     NQueues q(n);
     vector<vector<string>> v = q.solveQueue();
